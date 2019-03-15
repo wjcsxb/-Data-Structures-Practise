@@ -47,6 +47,23 @@ public class LinkList {
     }
 
     /*
+    * 在任意位置插入节点 在index的后面插入
+    * */
+    public void add(int pos,int data){
+        Node currentNode = first;
+        Node newNode = new Node(data);
+        Node previousNode = first;
+        while (index != pos) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+            index++;
+        }
+        previousNode.next = newNode;
+        newNode.next = currentNode;
+        index = 0;
+    }
+
+    /*
     * 显示所有节点信息
     * */
     public void displayAllNodes(){
