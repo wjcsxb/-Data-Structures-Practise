@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 * put ,get 方法 while ,if 的区别
 * */
 public class MultiThreadTest {
-    static class Storge{
+    static class Storage{
         private final int max = 5;
         private final ArrayList<Integer> list = new ArrayList<Integer>();
 
@@ -41,7 +41,7 @@ public class MultiThreadTest {
     }
 
     public static void main(String[] args) {
-        final Storge storge = new Storge();
+        final Storage storge = new Storage();
         ExecutorService es = Executors.newFixedThreadPool(11);
         //用一个周期性任务来打印当前list的大小
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
