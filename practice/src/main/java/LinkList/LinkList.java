@@ -1,5 +1,8 @@
 package LinkList;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 /**
  * The type Link list.
  * 单链表的创建 插入 删除
@@ -29,6 +32,7 @@ public class LinkList {
         node.next = first;
         first = node;
     }
+
     /*
     * 删除一个头结点,并返回当前头结点
     * */
@@ -118,7 +122,32 @@ public class LinkList {
         }
 
     }
-    public static void main(String[] args){
+    /*
+    * 合并两个有序的单链表，递归
+    * */
+    public Node mergerList(Node listA,Node listB){
+        if (listA == null && listB == null) {
+            return null;
+        }
+        if (listA == null) {
+            return listB;
+        }
+        if (listB == null) {
+            return listA;
+        }
+
+        Node newNode = null;
+        if (listA.data < listB.data) {
+            newNode = listA;
+            newNode.next = mergerList(listA.next, listB);
+        } else {
+            newNode = listB;
+            newNode.next = mergerList(listA, listB.next);
+        }
+
+        return newNode;
+    }
+    public static void main1(String[] args){
         LinkList linkList = new LinkList();
 //        LinkList linkList = new LinkList(0);
         linkList.addFirstNode(20);
@@ -129,5 +158,26 @@ public class LinkList {
 //        linkList.addFirstNodeWithHeadNode(21);
 //        linkList.addFirstNode(21);
         linkList.displayAllNodes();
+    }
+
+    public static void main(String[] args){
+        LinkList linkList1 = new LinkList();
+        LinkList linkList2 = new LinkList();
+        linkList1.addFirstNode(6);
+        linkList1.addFirstNode(4);
+        linkList1.addFirstNode(2);
+
+        linkList2.addFirstNode(5);
+        linkList2.addFirstNode(3);
+        linkList2.addFirstNode(1);
+
+        linkList1.displayAllNodes();
+        linkList2.displayAllNodes();
+
+        LinkList newList = new LinkList();
+        Node newNode = new Node(0);
+        newList.first = linkList1.mergerList(linkList1.first,linkList2.first);
+        newList.displayAllNodes();
+
     }
 }
